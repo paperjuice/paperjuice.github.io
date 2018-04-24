@@ -1,0 +1,89 @@
+.roomContainer {
+  position: relative;
+  overflow-y: hidden;
+  margin-top: 5%;
+  white-space: nowrap;
+  top: 0px;
+  min-height: 500px;
+}
+
+.roomContainer .room {
+  list-style-image: url('https://www.w3schools.com/howto/img_fjords.jpg');
+  width : 10pc;
+  display : inline-block;
+  margin-right: 30px;
+}
+
+.roomContainer .room .text{
+  position: relative;
+  bottom: -100px;
+  text-align: center;
+}
+
+.roomContainer .room .doorImage {
+  zoom: 1.2;
+  margin: auto;
+  margin-left: -5.5pc;
+}
+
+
+/* VERSION */
+:root {
+  --backgroundColor : #cccccc;
+}
+
+body {
+  font-family: 'Text Me One', sans-serif;
+}
+
+/* FLOOR */
+
+
+
+/* ROOM */
+
+
+.roomContainer {
+  width: 100%;
+  height: auto;
+  background-color: gray;
+  margin-top: 50px;
+}
+
+.text {
+  position: relative;
+  z-index: -10;
+  color: red;
+}
+
+.room {
+  float: left;
+  margin-left: 1px;
+  margin-right: 0px;
+}
+
+
+img {
+  position: relative;
+  z-index: -1;
+  max-width: 70%;
+  height: auto;
+
+}
+
+
+/* CONFIRM PANEL */
+
+.confirmPanel {
+  z-index: 1;
+  background-color: gray;
+  width: 50%;
+  height: 30%;
+  margin: auto;
+}
+.confirmPanel h1{
+  position: relative;
+  text-align: center;
+}
+
+

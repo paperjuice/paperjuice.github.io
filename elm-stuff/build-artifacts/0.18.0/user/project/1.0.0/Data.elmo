@@ -1,0 +1,24 @@
+var _user$project$Data$Room = F3(
+	function (a, b, c) {
+		return {id: a, state: b, active: c};
+	});
+var _user$project$Data$Model = F2(
+	function (a, b) {
+		return {rooms: a, activeRoomId: b};
+	});
+var _user$project$Data$Clean = {ctor: 'Clean'};
+var _user$project$Data$InProgress = {ctor: 'InProgress'};
+var _user$project$Data$Dirty = {ctor: 'Dirty'};
+var _user$project$Data$model = {
+	activeRoomId: 0,
+	rooms: {
+		ctor: '::',
+		_0: {id: 101, state: _user$project$Data$Dirty, active: false},
+		_1: {
+			ctor: '::',
+			_0: {id: 101, state: _user$project$Data$Dirty, active: false},
+			_1: {ctor: '[]'}
+		}
+	}
+};
+var _user$project$Data$Busy = {ctor: 'Busy'};
