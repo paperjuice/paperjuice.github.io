@@ -1,0 +1,6 @@
+#ignore temp vim files
+*.swp
+
+#ignore elm temp files
+/elm-stuff
+
