@@ -1,5 +1,6 @@
 import Html exposing (div, text, Html)
 import Navigation exposing (Location)
+import UrlParser exposing (..)
 
 
 main =
@@ -11,27 +12,53 @@ main =
   }
 
 
+
+matchers : Parser (Route -> a) a
+matchers =
+  oneOf
+    [ map PlayersRoute top
+    , map PlayerRoute (s "players" </> string)
+    , map PlayersRoute (s "players")
+    ]
+
+type alias PlayerId 
+  = String
+
+type Route
+  = NotFoundRoute
+  | PlayersRoute
+  | PlayerRoute PlayerId
+parseLocation : Location -> Route
+parseLocation  location =
+  case (parseHash matchers location) of
+    Just route ->
+      route
+
+    Nothing -> NotFoundRoute
+
+
+
 -- Msg --
 type Msg
   = Route Navigation.Location 
 
 -- Init --
 type alias Model =
-  { path : String
+  { route : Route
   }
 
 init location =
-  update (Route location) (Model "/")
+  update (Route location) (Model PlayersRoute) 
 
 -- View --
 view : Model -> Html msg
 view model =
-  case model.path of
-    "/" -> div [] [ text "hello" ]
+  case model.route of
+    PlayersRoute -> div [] [ text "hello" ]
 
-    "/1" -> div [] [ text "Page 1" ]
+    PlayerRoute string -> div [] [ text ("Page 1 " ++ string) ]
 
-    _   -> div [] [ text "Not found :( " ]
+    NotFoundRoute -> div [] [ text "Not found :( " ]
 
 
 -- Update --
@@ -39,5 +66,8 @@ update : Msg -> Model -> (Model, Cmd msg)
 update msg model =
   case msg of
     Route location ->
-      ( { model | path = location.pathname }, Cmd.none )
+      let
+          newRoute = parseLocation location
+      in
+          ( { model | route = newRoute }, Cmd.none )
 
