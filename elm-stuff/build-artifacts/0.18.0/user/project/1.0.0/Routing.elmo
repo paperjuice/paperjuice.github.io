@@ -1,0 +1,72 @@
+var _user$project$Routing$Model = function (a) {
+	return {route: a};
+};
+var _user$project$Routing$RouteNotFound = {ctor: 'RouteNotFound'};
+var _user$project$Routing$AdminRoom = function (a) {
+	return {ctor: 'AdminRoom', _0: a};
+};
+var _user$project$Routing$Admin = {ctor: 'Admin'};
+var _user$project$Routing$Reception = {ctor: 'Reception'};
+var _user$project$Routing$Cleaner = {ctor: 'Cleaner'};
+var _user$project$Routing$Register = {ctor: 'Register'};
+var _user$project$Routing$Login = {ctor: 'Login'};
+var _user$project$Routing$Home = {ctor: 'Home'};
+var _user$project$Routing$matcher = _evancz$url_parser$UrlParser$oneOf(
+	{
+		ctor: '::',
+		_0: A2(_evancz$url_parser$UrlParser$map, _user$project$Routing$Home, _evancz$url_parser$UrlParser$top),
+		_1: {
+			ctor: '::',
+			_0: A2(
+				_evancz$url_parser$UrlParser$map,
+				_user$project$Routing$Login,
+				_evancz$url_parser$UrlParser$s('login')),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_evancz$url_parser$UrlParser$map,
+					_user$project$Routing$Register,
+					_evancz$url_parser$UrlParser$s('register')),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_evancz$url_parser$UrlParser$map,
+						_user$project$Routing$Cleaner,
+						_evancz$url_parser$UrlParser$s('cleaner')),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_evancz$url_parser$UrlParser$map,
+							_user$project$Routing$Reception,
+							_evancz$url_parser$UrlParser$s('reception')),
+						_1: {
+							ctor: '::',
+							_0: A2(
+								_evancz$url_parser$UrlParser$map,
+								_user$project$Routing$Admin,
+								_evancz$url_parser$UrlParser$s('admin')),
+							_1: {
+								ctor: '::',
+								_0: A2(
+									_evancz$url_parser$UrlParser$map,
+									_user$project$Routing$AdminRoom,
+									A2(
+										_evancz$url_parser$UrlParser_ops['</>'],
+										_evancz$url_parser$UrlParser$s('admin'),
+										_evancz$url_parser$UrlParser$string)),
+								_1: {ctor: '[]'}
+							}
+						}
+					}
+				}
+			}
+		}
+	});
+var _user$project$Routing$parseLocation = function (location) {
+	var _p0 = A2(_evancz$url_parser$UrlParser$parseHash, _user$project$Routing$matcher, location);
+	if (_p0.ctor === 'Just') {
+		return _p0._0;
+	} else {
+		return _user$project$Routing$RouteNotFound;
+	}
+};

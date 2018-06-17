@@ -1,0 +1,13 @@
+@import "home.css";
+
+:root {
+  --bg-color: #ffffff;
+  --text-font: 'Source Serif Pro', serif;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: #fff;
+  margin: 0px;
+  height: 4000px;
+}
