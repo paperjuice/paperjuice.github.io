@@ -1,6 +1,6 @@
-import Html exposing (Html, text, div, img, button, span, iframe)
+import Html exposing (Html, text, div, img, button, span, iframe, a, span, p)
 import Html.Events exposing (onClick)
-import Html.Attributes exposing (class, src, style)
+import Html.Attributes exposing (class, src, style, href)
 import Navigation exposing (Location)
 import UrlParser exposing (parseHash, s, oneOf, top, map)
 
@@ -22,7 +22,7 @@ roomsDescEn = "We talk about how awesome the rooms are, how many are in total an
 
 restRo = "Restaurant"
 restEn = "Restaurant"
-restDescRo = "Spunem despre mancarea pe care o ofera hotelul si contextul in care o poate servi (evenimente)."
+restDescRo = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu."
 restDescEn = "We should say a few words about the food and the context in which this is server, donno."
 
 confRo = "Centru de conferinte"
@@ -40,13 +40,25 @@ offerDescEn = "Over the year we organise various events in which we invite you t
 type Msg
   = Path Location
   | Language
+  | RoomsDetails
+  | RestaurantDetails
+  | ConferenceDetails
+  | OffersDetails
+  | ContactDetails
+
+type Bool = True | False
 
 
 -- ROUTE --
 type Route
   = Home
   | Rooms
+  | Restaurant
+  | Conference
+  | Offers
+  | Contact
   | NotFound
+
 
 matchRoute : Location -> Route
 matchRoute location =
@@ -58,6 +70,7 @@ matcher =
   oneOf
     [ map Home top
     , map Rooms (s "rooms")
+    , map Contact (s "contact")
     ]
 
 
@@ -73,7 +86,6 @@ type alias Model =
 init : Location -> (Model, Cmd Msg)
 init location =
   update (Path location) (Model Home Ro)
-
 
 -- UPDATE --
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -94,15 +106,58 @@ update msg model =
       in
           ( { model | language = newLang }, Cmd.none )
 
+    -- TODO: Path-ul sa se schimbe in functie de language. Eg. camere/rooms
+    RoomsDetails ->
+      ( { model | route = Rooms }
+      , Navigation.newUrl(
+          (properLanguageText model.language "#/camere" "#/rooms")
+        )
+      )
+
+    RestaurantDetails ->
+      ( { model | route = Restaurant }
+      , Navigation.newUrl(
+        ( properLanguageText model.language "#/restaurant" "#/restaurant")
+        )
+      )
+
+    ConferenceDetails ->
+      ( { model | route = Conference }
+      , Navigation.newUrl
+        ( properLanguageText model.language "#/sali-conferinta" "#/conference-rooms"
+        )
+      )
+
+    OffersDetails ->
+      ( { model | route = Offers }
+      , Navigation.newUrl
+        ( properLanguageText model.language "#/oferte" "#/offers"
+        )
+      )
+
+    ContactDetails ->
+      ( { model | route = Contact }
+      , Navigation.newUrl
+        ( properLanguageText model.language "#/contacte" "#/contacts"
+        )
+      )
+
 
 -- VIEW --
 view : Model -> Html Msg
 view model =
-  case model.route of
-    Home     -> viewHome model
-    Rooms    -> div [ ] [ text "Rooms kfalsdjfkjsd" ]
-    NotFound -> div [ ] [ text "Nope :(" ]
-
+  div [ ]
+      [ header model
+      , ( case model.route of
+              Home       -> viewHome model
+              Rooms      -> div [ ] [ text "Rooms kfalsdjfkjsd" ]
+              Restaurant -> div [ ] [ text "Restaurant" ]
+              Conference -> div [ ] [ text "Conference" ]
+              Offers     -> div [ ] [ text "Offers" ]
+              Contact    -> div [ ] [ text "Contacts" ]
+              NotFound   -> div [ ] [ text "Nope :(" ]
+        )
+      ]
 
 ---------------
 -- HOME VIEW --
@@ -110,105 +165,86 @@ view model =
 viewHome : Model -> Html Msg
 viewHome model =
   div [ class "home" ]
-      [ header model
-      , description model
-      , container model
-      , contact model
-      , footer
+      [ intro
+      , introText model
+      , roomItem model
+      , restaurantItem model
       ]
+
+      --, description model
+      --, container model
+      --, contact model
+      --, footer
 
 header : Model -> Html Msg
 header model =
   div [ class "header" ]
-      [ div [ class "hotel-criss" ] [ text "Hotel Criss" ]
-      , img [ class "hotel-stars", src "icons/hotel-star.svg" ] [ ]
+      [ button [ class "home"] [ text "HC" ]
+      , div [ class "left-cont" ]
+            [ button [ class "rooms" ] [ text "Camere" ]
+            , button [ class "conference" ] [ text "Sali Conferinta" ]
+            , button [ class "restaurant" ] [ text "Restaurant" ]
+            ]
       , button [ class "book" ]
                [ text (properLanguageText model.language "Rezerva" "Book") ]
+      , div [ class "right-cont" ]
+            [ button [ class "offers" ]   [ text "Offerte" ]
+            , button [ class "photos" ]   [ text "Galerie Photo" ]
+            , button [ class "contacts" ] [ text "Contacte" ]
+            ]
       , div [ class "language", onClick Language ] (languageColor model.language)
       ]
 
-description : Model -> Html Msg
-description model =
-  div [ class "description" ]
-      [ div [ class "text" ]
-            [ text (properLanguageText model.language "Aici putem pune  o scurta descriere despre Bucuresti, putin despre istoricul hotelului, unde este situtat in capitala, cateva vorbe despre numarul de camere si conditiil excelente pe care le ofere." "This is the exact version of the Romanian text but obviously in English.") ]
-      , img [ class "break", src "icons/break.svg" ] [ ]
+
+intro : Html msg
+intro =
+  div [ class "intro" ]
+      [ img [ class "bg-image"
+            , src "http://hotelcriss.ro/wp-content/uploads/2014/05/01.hotel-criss1.jpg" ]  [ ]
+      , div [ class "title" ]   [ text "Hotel Criss" ]
+      , img [ class "stars", src "icons/hotel-star.svg" ]       [ ]
+      , div [ class "tagline" ]     [ text "Here we put the tagline" ]
+      , div [ class "description" ] [ text "Here we have a short description" ]
+      , img [ class "scroll", src "icons/scroll.svg" ] [ ]
       ]
 
-languageColor : Language -> List (Html Msg)
-languageColor language =
-  case language of
-    Ro ->
-      languageButtons "#4d4d4d" "white"
 
-    En ->
-      languageButtons "white" "#4d4d4d"
-
-languageButtons : String -> String -> List (Html Msg)
-languageButtons colorRo colorEn =
-      [ button [ style [ ("color", colorRo) ] ] [ text "Ro" ]
-      , span [ ] [ text "/" ]
-      , button [ style [ ("color", colorEn) ] ] [ text "En" ]
-      ]
-
-container : Model -> Html Msg
-container model =
-  div [ class "frame" ]
-      [ roomItem model
-      , restaurantItem model
-      , conferenceItem model
-      , offerItem model
+introText : Model -> Html Msg
+introText model =
+  div [ class "intro-text-container" ]
+      [ div [ class "intro-text" ]
+            [ span [ class "title" ] [ text "Hotel Criss " ],
+              text (properLanguageText model.language "aici putem pune  o scurta descriere despre Bucuresti, putin despre istoricul hotelului, unde este situtat in capitala, cateva vorbe despre numarul de camere si conditiil excelente pe care le ofere." "This is the exact version of the Romanian text but obviously in English.")
+            ]
       ]
 
 roomItem : Model -> Html Msg
 roomItem model =
-  div [ class "container" ]
-      [ div [ class "left" ]
-            [ div [ class "picture" ]
-                  [ img [ class "room-block"
-                        , src "https://i.imgur.com/bMYJQje.png"
-                        ] [ ]
-                  ]
-            , descriptionItem
-              model
-              (properLanguageText model.language roomsRo roomsEn)
-              (properLanguageText model.language roomsDescRo roomsDescEn)
+  div [ class "room-item" ]
+      [ div [ class "title" ]
+            [ text "Camere" ]
+      , div [ class "description" ]
+            [ text roomsDescRo ]
+      , div [ class "picture-container" ]
+            [ img [ class "one", src "https://i.imgur.com/bMYJQje.png" ]   [ ]
+            , img [ class "two", src "https://i.imgur.com/ttSkgoA.jpg" ]   [ ]
+            , img [ class "three", src "https://i.imgur.com/69P9RmO.jpg" ] [ ]
             ]
-      , div [ class "right" ]
-            [ img [ class "room-right"
-                  , src "https://i.imgur.com/ttSkgoA.jpg"
-                  ] [ ]
-            ]
-      , div [ class "bottom" ]
-            [ img [ class "room-bot"
-                  , src "https://i.imgur.com/69P9RmO.jpg"
-                  ] [ ]
-            ]
+      , detailButton RoomsDetails model
       ]
 
 restaurantItem : Model -> Html Msg
 restaurantItem model =
-  div [ class "container" ]
-      [ div [ class "right" ]
-            [ img [ class "rest-right"
-                  , src "https://i.imgur.com/pFpC8Pp.jpg"
-                  ] [ ]
+  div [ class "restaurant-item" ]
+      [ div [ class "picture-container" ]
+            [ img [ class "one", src "https://i.imgur.com/pFpC8Pp.jpg" ] [ ]
             ]
-      , div [ class "left" ]
-            [ div [ class "picture" ]
-                  [ img [ class "rest-left"
-                        , src "https://i.imgur.com/1GGzLwD.jpg"
-                        ] [ ]
-                  ]
-            , descriptionItem
-              model
-              ( properLanguageText model.language restRo restEn )
-              ( properLanguageText model.language restDescRo restDescEn )
-            ]
-      , div [ class "bottom" ]
-            [ img [ class "rest-bot"
-                  , src "https://i.imgur.com/l3YZ8Qe.jpg"
-                  ] [ ]
+      , div [ class "text-container" ]
+            [ div [ class "title" ]
+                  [ text restRo ]
+            , div [ class "description" ]
+                  [ text restDescRo]
+            , detailButton RestaurantDetails model
             ]
       ]
 
@@ -222,6 +258,7 @@ conferenceItem model =
                         ] [ ]
                   ]
             , descriptionItem
+              ConferenceDetails
               model
               ( properLanguageText model.language confRo confEn )
               ( properLanguageText model.language confDescRo confDescEn )
@@ -253,6 +290,7 @@ offerItem model =
                         ] [ ]
                   ]
             , descriptionItem
+              OffersDetails
               model
               ( properLanguageText model.language offerRo offerEn )
               ( properLanguageText model.language offerDescRo offerDescEn )
@@ -274,7 +312,7 @@ contact model =
       , div [ class "description" ]
             [ text (properLanguageText
                     model.language
-                    "Suntem mai mult ca fericiti sa stam la dispozitia dumneavoastra." 
+                    "Suntem mai mult ca fericiti sa stam la dispozitia dumneavoastra."
                     "We are more than happy to assist you with any inquiries."
                     ) ]
 
@@ -295,22 +333,48 @@ contact model =
                   ]
             ]
       , iframe [ src googleMaps ] [ ]
-      , detailButton model
+      , detailButton ContactDetails model
       ]
 
-descriptionItem : Model -> String -> String -> Html Msg
-descriptionItem model title description=
+languageColor : Language -> List (Html Msg)
+languageColor language =
+  case language of
+    Ro ->
+      languageButtons "white" "#4d4d4d"
+
+    En ->
+      languageButtons "#4d4d4d" "white"
+
+languageButtons : String -> String -> List (Html Msg)
+languageButtons colorRo colorEn =
+      [ button [ style [ ("color", colorRo) ] ] [ text "Ro" ]
+      , span [ ] [ text "/" ]
+      , button [ style [ ("color", colorEn) ] ] [ text "En" ]
+      ]
+
+container : Model -> Html Msg
+container model =
+  div [ class "frame" ]
+      [ roomItem model
+      , restaurantItem model
+      , conferenceItem model
+      , offerItem model
+      ]
+
+descriptionItem : Msg -> Model -> String -> String -> Html Msg
+descriptionItem msg model title description=
   div [ class "text" ]
       [ div [ class "title" ] [ text title ]
       , div [ class "description" ]
             [ text  description ]
-      , detailButton model
+      , (detailButton msg model)
       ]
 
-detailButton : Model -> Html Msg
-detailButton model =
-  div [ class "detail-button" ]
-      [ text (properLanguageText model.language "Detalii" "Details") ]
+
+detailButton : Msg -> Model -> Html Msg
+detailButton msg model =
+  button [ class "detail-button", onClick msg ]
+         [ text (properLanguageText model.language "Detalii" "Details") ]
 
 
 footer : Html Msg

@@ -9893,23 +9893,28 @@ var _user$project$Main$footer = A2(
 		_1: {ctor: '[]'}
 	},
 	{ctor: '[]'});
-var _user$project$Main$detailButton = function (model) {
-	return A2(
-		_elm_lang$html$Html$div,
-		{
-			ctor: '::',
-			_0: _elm_lang$html$Html_Attributes$class('detail-button'),
-			_1: {ctor: '[]'}
-		},
-		{
-			ctor: '::',
-			_0: _elm_lang$html$Html$text(
-				A3(_user$project$Main$properLanguageText, model.language, 'Detalii', 'Details')),
-			_1: {ctor: '[]'}
-		});
-};
-var _user$project$Main$descriptionItem = F3(
-	function (model, title, description) {
+var _user$project$Main$detailButton = F2(
+	function (msg, model) {
+		return A2(
+			_elm_lang$html$Html$button,
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html_Attributes$class('detail-button'),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$html$Html_Events$onClick(msg),
+					_1: {ctor: '[]'}
+				}
+			},
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html$text(
+					A3(_user$project$Main$properLanguageText, model.language, 'Detalii', 'Details')),
+				_1: {ctor: '[]'}
+			});
+	});
+var _user$project$Main$descriptionItem = F4(
+	function (msg, model, title, description) {
 		return A2(
 			_elm_lang$html$Html$div,
 			{
@@ -9947,7 +9952,7 @@ var _user$project$Main$descriptionItem = F3(
 						}),
 					_1: {
 						ctor: '::',
-						_0: _user$project$Main$detailButton(model),
+						_0: A2(_user$project$Main$detailButton, msg, model),
 						_1: {ctor: '[]'}
 					}
 				}
@@ -10011,17 +10016,17 @@ var _user$project$Main$languageButtons = F2(
 var _user$project$Main$languageColor = function (language) {
 	var _p1 = language;
 	if (_p1.ctor === 'Ro') {
-		return A2(_user$project$Main$languageButtons, '#4d4d4d', 'white');
-	} else {
 		return A2(_user$project$Main$languageButtons, 'white', '#4d4d4d');
+	} else {
+		return A2(_user$project$Main$languageButtons, '#4d4d4d', 'white');
 	}
 };
-var _user$project$Main$description = function (model) {
+var _user$project$Main$introText = function (model) {
 	return A2(
 		_elm_lang$html$Html$div,
 		{
 			ctor: '::',
-			_0: _elm_lang$html$Html_Attributes$class('description'),
+			_0: _elm_lang$html$Html_Attributes$class('intro-text-container'),
 			_1: {ctor: '[]'}
 		},
 		{
@@ -10030,13 +10035,66 @@ var _user$project$Main$description = function (model) {
 				_elm_lang$html$Html$div,
 				{
 					ctor: '::',
-					_0: _elm_lang$html$Html_Attributes$class('text'),
+					_0: _elm_lang$html$Html_Attributes$class('intro-text'),
 					_1: {ctor: '[]'}
 				},
 				{
 					ctor: '::',
-					_0: _elm_lang$html$Html$text(
-						A3(_user$project$Main$properLanguageText, model.language, 'Aici putem pune  o scurta descriere despre Bucuresti, putin despre istoricul hotelului, unde este situtat in capitala, cateva vorbe despre numarul de camere si conditiil excelente pe care le ofere.', 'This is the exact version of the Romanian text but obviously in English.')),
+					_0: A2(
+						_elm_lang$html$Html$span,
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html_Attributes$class('title'),
+							_1: {ctor: '[]'}
+						},
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html$text('Hotel Criss '),
+							_1: {ctor: '[]'}
+						}),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$html$Html$text(
+							A3(_user$project$Main$properLanguageText, model.language, 'aici putem pune  o scurta descriere despre Bucuresti, putin despre istoricul hotelului, unde este situtat in capitala, cateva vorbe despre numarul de camere si conditiil excelente pe care le ofere.', 'This is the exact version of the Romanian text but obviously in English.')),
+						_1: {ctor: '[]'}
+					}
+				}),
+			_1: {ctor: '[]'}
+		});
+};
+var _user$project$Main$intro = A2(
+	_elm_lang$html$Html$div,
+	{
+		ctor: '::',
+		_0: _elm_lang$html$Html_Attributes$class('intro'),
+		_1: {ctor: '[]'}
+	},
+	{
+		ctor: '::',
+		_0: A2(
+			_elm_lang$html$Html$img,
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html_Attributes$class('bg-image'),
+				_1: {
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$src('http://hotelcriss.ro/wp-content/uploads/2014/05/01.hotel-criss1.jpg'),
+					_1: {ctor: '[]'}
+				}
+			},
+			{ctor: '[]'}),
+		_1: {
+			ctor: '::',
+			_0: A2(
+				_elm_lang$html$Html$div,
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$class('title'),
+					_1: {ctor: '[]'}
+				},
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html$text('Hotel Criss'),
 					_1: {ctor: '[]'}
 				}),
 			_1: {
@@ -10045,489 +10103,85 @@ var _user$project$Main$description = function (model) {
 					_elm_lang$html$Html$img,
 					{
 						ctor: '::',
-						_0: _elm_lang$html$Html_Attributes$class('break'),
+						_0: _elm_lang$html$Html_Attributes$class('stars'),
 						_1: {
 							ctor: '::',
-							_0: _elm_lang$html$Html_Attributes$src('icons/break.svg'),
+							_0: _elm_lang$html$Html_Attributes$src('icons/hotel-star.svg'),
 							_1: {ctor: '[]'}
 						}
 					},
 					{ctor: '[]'}),
-				_1: {ctor: '[]'}
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$div,
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html_Attributes$class('tagline'),
+							_1: {ctor: '[]'}
+						},
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html$text('Here we put the tagline'),
+							_1: {ctor: '[]'}
+						}),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_elm_lang$html$Html$div,
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html_Attributes$class('description'),
+								_1: {ctor: '[]'}
+							},
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html$text('Here we have a short description'),
+								_1: {ctor: '[]'}
+							}),
+						_1: {
+							ctor: '::',
+							_0: A2(
+								_elm_lang$html$Html$img,
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html_Attributes$class('scroll'),
+									_1: {
+										ctor: '::',
+										_0: _elm_lang$html$Html_Attributes$src('icons/scroll.svg'),
+										_1: {ctor: '[]'}
+									}
+								},
+								{ctor: '[]'}),
+							_1: {ctor: '[]'}
+						}
+					}
+				}
 			}
-		});
-};
+		}
+	});
 var _user$project$Main$offerDescEn = 'Over the year we organise various events in which we invite you to take part.';
 var _user$project$Main$offerDescRo = 'Hotelul organizeaza diferite eveniment in functie de perioada anului.';
 var _user$project$Main$offerEn = 'Special offers';
 var _user$project$Main$offerRo = 'Oferte';
-var _user$project$Main$offerItem = function (model) {
-	return A2(
-		_elm_lang$html$Html$div,
-		{
-			ctor: '::',
-			_0: _elm_lang$html$Html_Attributes$class('container'),
-			_1: {ctor: '[]'}
-		},
-		{
-			ctor: '::',
-			_0: A2(
-				_elm_lang$html$Html$div,
-				{
-					ctor: '::',
-					_0: _elm_lang$html$Html_Attributes$class('right'),
-					_1: {ctor: '[]'}
-				},
-				{
-					ctor: '::',
-					_0: A2(
-						_elm_lang$html$Html$img,
-						{
-							ctor: '::',
-							_0: _elm_lang$html$Html_Attributes$class('offer-right'),
-							_1: {
-								ctor: '::',
-								_0: _elm_lang$html$Html_Attributes$src('https://i.imgur.com/lSW3WK2.jpg'),
-								_1: {ctor: '[]'}
-							}
-						},
-						{ctor: '[]'}),
-					_1: {ctor: '[]'}
-				}),
-			_1: {
-				ctor: '::',
-				_0: A2(
-					_elm_lang$html$Html$div,
-					{
-						ctor: '::',
-						_0: _elm_lang$html$Html_Attributes$class('left'),
-						_1: {ctor: '[]'}
-					},
-					{
-						ctor: '::',
-						_0: A2(
-							_elm_lang$html$Html$div,
-							{
-								ctor: '::',
-								_0: _elm_lang$html$Html_Attributes$class('picture'),
-								_1: {ctor: '[]'}
-							},
-							{
-								ctor: '::',
-								_0: A2(
-									_elm_lang$html$Html$img,
-									{
-										ctor: '::',
-										_0: _elm_lang$html$Html_Attributes$class('offer-left'),
-										_1: {
-											ctor: '::',
-											_0: _elm_lang$html$Html_Attributes$src('https://i.imgur.com/V24BLy2.jpg'),
-											_1: {ctor: '[]'}
-										}
-									},
-									{ctor: '[]'}),
-								_1: {ctor: '[]'}
-							}),
-						_1: {
-							ctor: '::',
-							_0: A3(
-								_user$project$Main$descriptionItem,
-								model,
-								A3(_user$project$Main$properLanguageText, model.language, _user$project$Main$offerRo, _user$project$Main$offerEn),
-								A3(_user$project$Main$properLanguageText, model.language, _user$project$Main$offerDescRo, _user$project$Main$offerDescEn)),
-							_1: {ctor: '[]'}
-						}
-					}),
-				_1: {
-					ctor: '::',
-					_0: A2(
-						_elm_lang$html$Html$div,
-						{
-							ctor: '::',
-							_0: _elm_lang$html$Html_Attributes$class('bottom'),
-							_1: {ctor: '[]'}
-						},
-						{
-							ctor: '::',
-							_0: A2(
-								_elm_lang$html$Html$img,
-								{
-									ctor: '::',
-									_0: _elm_lang$html$Html_Attributes$class('offer-bot'),
-									_1: {
-										ctor: '::',
-										_0: _elm_lang$html$Html_Attributes$src('https://i.imgur.com/dINiFcv.jpg'),
-										_1: {ctor: '[]'}
-									}
-								},
-								{ctor: '[]'}),
-							_1: {ctor: '[]'}
-						}),
-					_1: {ctor: '[]'}
-				}
-			}
-		});
-};
 var _user$project$Main$confDescEn = 'We offer spatious conference rooms up to 180 seats.';
 var _user$project$Main$confDescRo = 'Ceva despre fatul ca hotelul ofera spatii pentru conferinte.';
 var _user$project$Main$confEn = 'Conference center';
 var _user$project$Main$confRo = 'Centru de conferinte';
-var _user$project$Main$conferenceItem = function (model) {
-	return A2(
-		_elm_lang$html$Html$div,
-		{
-			ctor: '::',
-			_0: _elm_lang$html$Html_Attributes$class('container'),
-			_1: {ctor: '[]'}
-		},
-		{
-			ctor: '::',
-			_0: A2(
-				_elm_lang$html$Html$div,
-				{
-					ctor: '::',
-					_0: _elm_lang$html$Html_Attributes$class('left'),
-					_1: {ctor: '[]'}
-				},
-				{
-					ctor: '::',
-					_0: A2(
-						_elm_lang$html$Html$div,
-						{
-							ctor: '::',
-							_0: _elm_lang$html$Html_Attributes$class('picture'),
-							_1: {ctor: '[]'}
-						},
-						{
-							ctor: '::',
-							_0: A2(
-								_elm_lang$html$Html$img,
-								{
-									ctor: '::',
-									_0: _elm_lang$html$Html_Attributes$class('conf-left'),
-									_1: {
-										ctor: '::',
-										_0: _elm_lang$html$Html_Attributes$src('https://i.imgur.com/XS6uWXP.jpg'),
-										_1: {ctor: '[]'}
-									}
-								},
-								{ctor: '[]'}),
-							_1: {ctor: '[]'}
-						}),
-					_1: {
-						ctor: '::',
-						_0: A3(
-							_user$project$Main$descriptionItem,
-							model,
-							A3(_user$project$Main$properLanguageText, model.language, _user$project$Main$confRo, _user$project$Main$confEn),
-							A3(_user$project$Main$properLanguageText, model.language, _user$project$Main$confDescRo, _user$project$Main$confDescEn)),
-						_1: {ctor: '[]'}
-					}
-				}),
-			_1: {
-				ctor: '::',
-				_0: A2(
-					_elm_lang$html$Html$div,
-					{
-						ctor: '::',
-						_0: _elm_lang$html$Html_Attributes$class('right'),
-						_1: {ctor: '[]'}
-					},
-					{
-						ctor: '::',
-						_0: A2(
-							_elm_lang$html$Html$img,
-							{
-								ctor: '::',
-								_0: _elm_lang$html$Html_Attributes$class('conf-right'),
-								_1: {
-									ctor: '::',
-									_0: _elm_lang$html$Html_Attributes$src('https://i.imgur.com/D9hXKgc.jpg'),
-									_1: {ctor: '[]'}
-								}
-							},
-							{ctor: '[]'}),
-						_1: {ctor: '[]'}
-					}),
-				_1: {
-					ctor: '::',
-					_0: A2(
-						_elm_lang$html$Html$div,
-						{
-							ctor: '::',
-							_0: _elm_lang$html$Html_Attributes$class('bottom'),
-							_1: {ctor: '[]'}
-						},
-						{
-							ctor: '::',
-							_0: A2(
-								_elm_lang$html$Html$img,
-								{
-									ctor: '::',
-									_0: _elm_lang$html$Html_Attributes$class('conf-bot'),
-									_1: {
-										ctor: '::',
-										_0: _elm_lang$html$Html_Attributes$src('https://i.imgur.com/8TBYOGM.jpg'),
-										_1: {ctor: '[]'}
-									}
-								},
-								{ctor: '[]'}),
-							_1: {ctor: '[]'}
-						}),
-					_1: {ctor: '[]'}
-				}
-			}
-		});
-};
 var _user$project$Main$restDescEn = 'We should say a few words about the food and the context in which this is server, donno.';
-var _user$project$Main$restDescRo = 'Spunem despre mancarea pe care o ofera hotelul si contextul in care o poate servi (evenimente).';
+var _user$project$Main$restDescRo = 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.';
 var _user$project$Main$restEn = 'Restaurant';
 var _user$project$Main$restRo = 'Restaurant';
-var _user$project$Main$restaurantItem = function (model) {
-	return A2(
-		_elm_lang$html$Html$div,
-		{
-			ctor: '::',
-			_0: _elm_lang$html$Html_Attributes$class('container'),
-			_1: {ctor: '[]'}
-		},
-		{
-			ctor: '::',
-			_0: A2(
-				_elm_lang$html$Html$div,
-				{
-					ctor: '::',
-					_0: _elm_lang$html$Html_Attributes$class('right'),
-					_1: {ctor: '[]'}
-				},
-				{
-					ctor: '::',
-					_0: A2(
-						_elm_lang$html$Html$img,
-						{
-							ctor: '::',
-							_0: _elm_lang$html$Html_Attributes$class('rest-right'),
-							_1: {
-								ctor: '::',
-								_0: _elm_lang$html$Html_Attributes$src('https://i.imgur.com/pFpC8Pp.jpg'),
-								_1: {ctor: '[]'}
-							}
-						},
-						{ctor: '[]'}),
-					_1: {ctor: '[]'}
-				}),
-			_1: {
-				ctor: '::',
-				_0: A2(
-					_elm_lang$html$Html$div,
-					{
-						ctor: '::',
-						_0: _elm_lang$html$Html_Attributes$class('left'),
-						_1: {ctor: '[]'}
-					},
-					{
-						ctor: '::',
-						_0: A2(
-							_elm_lang$html$Html$div,
-							{
-								ctor: '::',
-								_0: _elm_lang$html$Html_Attributes$class('picture'),
-								_1: {ctor: '[]'}
-							},
-							{
-								ctor: '::',
-								_0: A2(
-									_elm_lang$html$Html$img,
-									{
-										ctor: '::',
-										_0: _elm_lang$html$Html_Attributes$class('rest-left'),
-										_1: {
-											ctor: '::',
-											_0: _elm_lang$html$Html_Attributes$src('https://i.imgur.com/1GGzLwD.jpg'),
-											_1: {ctor: '[]'}
-										}
-									},
-									{ctor: '[]'}),
-								_1: {ctor: '[]'}
-							}),
-						_1: {
-							ctor: '::',
-							_0: A3(
-								_user$project$Main$descriptionItem,
-								model,
-								A3(_user$project$Main$properLanguageText, model.language, _user$project$Main$restRo, _user$project$Main$restEn),
-								A3(_user$project$Main$properLanguageText, model.language, _user$project$Main$restDescRo, _user$project$Main$restDescEn)),
-							_1: {ctor: '[]'}
-						}
-					}),
-				_1: {
-					ctor: '::',
-					_0: A2(
-						_elm_lang$html$Html$div,
-						{
-							ctor: '::',
-							_0: _elm_lang$html$Html_Attributes$class('bottom'),
-							_1: {ctor: '[]'}
-						},
-						{
-							ctor: '::',
-							_0: A2(
-								_elm_lang$html$Html$img,
-								{
-									ctor: '::',
-									_0: _elm_lang$html$Html_Attributes$class('rest-bot'),
-									_1: {
-										ctor: '::',
-										_0: _elm_lang$html$Html_Attributes$src('https://i.imgur.com/l3YZ8Qe.jpg'),
-										_1: {ctor: '[]'}
-									}
-								},
-								{ctor: '[]'}),
-							_1: {ctor: '[]'}
-						}),
-					_1: {ctor: '[]'}
-				}
-			}
-		});
-};
 var _user$project$Main$roomsDescEn = 'We talk about how awesome the rooms are, how many are in total and perhaps a few words regarding the accessible prices we offer.';
 var _user$project$Main$roomsDescRo = 'Laudam camere nitel, spunem cate sunt in total, si cateva vorbe despre cum e fiecare si ca preturile sunt accesible.';
 var _user$project$Main$roomsEn = 'Rooms';
 var _user$project$Main$roomsRo = 'Camere';
-var _user$project$Main$roomItem = function (model) {
-	return A2(
-		_elm_lang$html$Html$div,
-		{
-			ctor: '::',
-			_0: _elm_lang$html$Html_Attributes$class('container'),
-			_1: {ctor: '[]'}
-		},
-		{
-			ctor: '::',
-			_0: A2(
-				_elm_lang$html$Html$div,
-				{
-					ctor: '::',
-					_0: _elm_lang$html$Html_Attributes$class('left'),
-					_1: {ctor: '[]'}
-				},
-				{
-					ctor: '::',
-					_0: A2(
-						_elm_lang$html$Html$div,
-						{
-							ctor: '::',
-							_0: _elm_lang$html$Html_Attributes$class('picture'),
-							_1: {ctor: '[]'}
-						},
-						{
-							ctor: '::',
-							_0: A2(
-								_elm_lang$html$Html$img,
-								{
-									ctor: '::',
-									_0: _elm_lang$html$Html_Attributes$class('room-block'),
-									_1: {
-										ctor: '::',
-										_0: _elm_lang$html$Html_Attributes$src('https://i.imgur.com/bMYJQje.png'),
-										_1: {ctor: '[]'}
-									}
-								},
-								{ctor: '[]'}),
-							_1: {ctor: '[]'}
-						}),
-					_1: {
-						ctor: '::',
-						_0: A3(
-							_user$project$Main$descriptionItem,
-							model,
-							A3(_user$project$Main$properLanguageText, model.language, _user$project$Main$roomsRo, _user$project$Main$roomsEn),
-							A3(_user$project$Main$properLanguageText, model.language, _user$project$Main$roomsDescRo, _user$project$Main$roomsDescEn)),
-						_1: {ctor: '[]'}
-					}
-				}),
-			_1: {
-				ctor: '::',
-				_0: A2(
-					_elm_lang$html$Html$div,
-					{
-						ctor: '::',
-						_0: _elm_lang$html$Html_Attributes$class('right'),
-						_1: {ctor: '[]'}
-					},
-					{
-						ctor: '::',
-						_0: A2(
-							_elm_lang$html$Html$img,
-							{
-								ctor: '::',
-								_0: _elm_lang$html$Html_Attributes$class('room-right'),
-								_1: {
-									ctor: '::',
-									_0: _elm_lang$html$Html_Attributes$src('https://i.imgur.com/ttSkgoA.jpg'),
-									_1: {ctor: '[]'}
-								}
-							},
-							{ctor: '[]'}),
-						_1: {ctor: '[]'}
-					}),
-				_1: {
-					ctor: '::',
-					_0: A2(
-						_elm_lang$html$Html$div,
-						{
-							ctor: '::',
-							_0: _elm_lang$html$Html_Attributes$class('bottom'),
-							_1: {ctor: '[]'}
-						},
-						{
-							ctor: '::',
-							_0: A2(
-								_elm_lang$html$Html$img,
-								{
-									ctor: '::',
-									_0: _elm_lang$html$Html_Attributes$class('room-bot'),
-									_1: {
-										ctor: '::',
-										_0: _elm_lang$html$Html_Attributes$src('https://i.imgur.com/69P9RmO.jpg'),
-										_1: {ctor: '[]'}
-									}
-								},
-								{ctor: '[]'}),
-							_1: {ctor: '[]'}
-						}),
-					_1: {ctor: '[]'}
-				}
-			}
-		});
-};
-var _user$project$Main$container = function (model) {
-	return A2(
-		_elm_lang$html$Html$div,
-		{
-			ctor: '::',
-			_0: _elm_lang$html$Html_Attributes$class('frame'),
-			_1: {ctor: '[]'}
-		},
-		{
-			ctor: '::',
-			_0: _user$project$Main$roomItem(model),
-			_1: {
-				ctor: '::',
-				_0: _user$project$Main$restaurantItem(model),
-				_1: {
-					ctor: '::',
-					_0: _user$project$Main$conferenceItem(model),
-					_1: {
-						ctor: '::',
-						_0: _user$project$Main$offerItem(model),
-						_1: {ctor: '[]'}
-					}
-				}
-			}
-		});
-};
 var _user$project$Main$googleMaps = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2848.939794849981!2d25.987970515523305!3d44.43439717910221!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b200e31c40b727%3A0x18dec04ac0ffa6f2!2sBulevardul+Iuliu+Maniu+484%2C+Bucure%C8%99ti%2C+Romania!5e0!3m2!1sen!2sse!4v1529339983765';
+var _user$project$Main$Model = F2(
+	function (a, b) {
+		return {route: a, language: b};
+	});
+var _user$project$Main$ContactDetails = {ctor: 'ContactDetails'};
 var _user$project$Main$contact = function (model) {
 	return A2(
 		_elm_lang$html$Html$div,
@@ -10681,7 +10335,7 @@ var _user$project$Main$contact = function (model) {
 								{ctor: '[]'}),
 							_1: {
 								ctor: '::',
-								_0: _user$project$Main$detailButton(model),
+								_0: A2(_user$project$Main$detailButton, _user$project$Main$ContactDetails, model),
 								_1: {ctor: '[]'}
 							}
 						}
@@ -10690,10 +10344,459 @@ var _user$project$Main$contact = function (model) {
 			}
 		});
 };
-var _user$project$Main$Model = F2(
-	function (a, b) {
-		return {route: a, language: b};
-	});
+var _user$project$Main$OffersDetails = {ctor: 'OffersDetails'};
+var _user$project$Main$offerItem = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$class('container'),
+			_1: {ctor: '[]'}
+		},
+		{
+			ctor: '::',
+			_0: A2(
+				_elm_lang$html$Html$div,
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$class('right'),
+					_1: {ctor: '[]'}
+				},
+				{
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$img,
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html_Attributes$class('offer-right'),
+							_1: {
+								ctor: '::',
+								_0: _elm_lang$html$Html_Attributes$src('https://i.imgur.com/lSW3WK2.jpg'),
+								_1: {ctor: '[]'}
+							}
+						},
+						{ctor: '[]'}),
+					_1: {ctor: '[]'}
+				}),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$div,
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$class('left'),
+						_1: {ctor: '[]'}
+					},
+					{
+						ctor: '::',
+						_0: A2(
+							_elm_lang$html$Html$div,
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html_Attributes$class('picture'),
+								_1: {ctor: '[]'}
+							},
+							{
+								ctor: '::',
+								_0: A2(
+									_elm_lang$html$Html$img,
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html_Attributes$class('offer-left'),
+										_1: {
+											ctor: '::',
+											_0: _elm_lang$html$Html_Attributes$src('https://i.imgur.com/V24BLy2.jpg'),
+											_1: {ctor: '[]'}
+										}
+									},
+									{ctor: '[]'}),
+								_1: {ctor: '[]'}
+							}),
+						_1: {
+							ctor: '::',
+							_0: A4(
+								_user$project$Main$descriptionItem,
+								_user$project$Main$OffersDetails,
+								model,
+								A3(_user$project$Main$properLanguageText, model.language, _user$project$Main$offerRo, _user$project$Main$offerEn),
+								A3(_user$project$Main$properLanguageText, model.language, _user$project$Main$offerDescRo, _user$project$Main$offerDescEn)),
+							_1: {ctor: '[]'}
+						}
+					}),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$div,
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html_Attributes$class('bottom'),
+							_1: {ctor: '[]'}
+						},
+						{
+							ctor: '::',
+							_0: A2(
+								_elm_lang$html$Html$img,
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html_Attributes$class('offer-bot'),
+									_1: {
+										ctor: '::',
+										_0: _elm_lang$html$Html_Attributes$src('https://i.imgur.com/dINiFcv.jpg'),
+										_1: {ctor: '[]'}
+									}
+								},
+								{ctor: '[]'}),
+							_1: {ctor: '[]'}
+						}),
+					_1: {ctor: '[]'}
+				}
+			}
+		});
+};
+var _user$project$Main$ConferenceDetails = {ctor: 'ConferenceDetails'};
+var _user$project$Main$conferenceItem = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$class('container'),
+			_1: {ctor: '[]'}
+		},
+		{
+			ctor: '::',
+			_0: A2(
+				_elm_lang$html$Html$div,
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$class('left'),
+					_1: {ctor: '[]'}
+				},
+				{
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$div,
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html_Attributes$class('picture'),
+							_1: {ctor: '[]'}
+						},
+						{
+							ctor: '::',
+							_0: A2(
+								_elm_lang$html$Html$img,
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html_Attributes$class('conf-left'),
+									_1: {
+										ctor: '::',
+										_0: _elm_lang$html$Html_Attributes$src('https://i.imgur.com/XS6uWXP.jpg'),
+										_1: {ctor: '[]'}
+									}
+								},
+								{ctor: '[]'}),
+							_1: {ctor: '[]'}
+						}),
+					_1: {
+						ctor: '::',
+						_0: A4(
+							_user$project$Main$descriptionItem,
+							_user$project$Main$ConferenceDetails,
+							model,
+							A3(_user$project$Main$properLanguageText, model.language, _user$project$Main$confRo, _user$project$Main$confEn),
+							A3(_user$project$Main$properLanguageText, model.language, _user$project$Main$confDescRo, _user$project$Main$confDescEn)),
+						_1: {ctor: '[]'}
+					}
+				}),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$div,
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$class('right'),
+						_1: {ctor: '[]'}
+					},
+					{
+						ctor: '::',
+						_0: A2(
+							_elm_lang$html$Html$img,
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html_Attributes$class('conf-right'),
+								_1: {
+									ctor: '::',
+									_0: _elm_lang$html$Html_Attributes$src('https://i.imgur.com/D9hXKgc.jpg'),
+									_1: {ctor: '[]'}
+								}
+							},
+							{ctor: '[]'}),
+						_1: {ctor: '[]'}
+					}),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$div,
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html_Attributes$class('bottom'),
+							_1: {ctor: '[]'}
+						},
+						{
+							ctor: '::',
+							_0: A2(
+								_elm_lang$html$Html$img,
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html_Attributes$class('conf-bot'),
+									_1: {
+										ctor: '::',
+										_0: _elm_lang$html$Html_Attributes$src('https://i.imgur.com/8TBYOGM.jpg'),
+										_1: {ctor: '[]'}
+									}
+								},
+								{ctor: '[]'}),
+							_1: {ctor: '[]'}
+						}),
+					_1: {ctor: '[]'}
+				}
+			}
+		});
+};
+var _user$project$Main$RestaurantDetails = {ctor: 'RestaurantDetails'};
+var _user$project$Main$restaurantItem = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$class('restaurant-item'),
+			_1: {ctor: '[]'}
+		},
+		{
+			ctor: '::',
+			_0: A2(
+				_elm_lang$html$Html$div,
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$class('picture-container'),
+					_1: {ctor: '[]'}
+				},
+				{
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$img,
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html_Attributes$class('one'),
+							_1: {
+								ctor: '::',
+								_0: _elm_lang$html$Html_Attributes$src('https://i.imgur.com/pFpC8Pp.jpg'),
+								_1: {ctor: '[]'}
+							}
+						},
+						{ctor: '[]'}),
+					_1: {ctor: '[]'}
+				}),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$div,
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$class('text-container'),
+						_1: {ctor: '[]'}
+					},
+					{
+						ctor: '::',
+						_0: A2(
+							_elm_lang$html$Html$div,
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html_Attributes$class('title'),
+								_1: {ctor: '[]'}
+							},
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html$text(_user$project$Main$restRo),
+								_1: {ctor: '[]'}
+							}),
+						_1: {
+							ctor: '::',
+							_0: A2(
+								_elm_lang$html$Html$div,
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html_Attributes$class('description'),
+									_1: {ctor: '[]'}
+								},
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html$text(_user$project$Main$restDescRo),
+									_1: {ctor: '[]'}
+								}),
+							_1: {
+								ctor: '::',
+								_0: A2(_user$project$Main$detailButton, _user$project$Main$RestaurantDetails, model),
+								_1: {ctor: '[]'}
+							}
+						}
+					}),
+				_1: {ctor: '[]'}
+			}
+		});
+};
+var _user$project$Main$RoomsDetails = {ctor: 'RoomsDetails'};
+var _user$project$Main$roomItem = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$class('room-item'),
+			_1: {ctor: '[]'}
+		},
+		{
+			ctor: '::',
+			_0: A2(
+				_elm_lang$html$Html$div,
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$class('title'),
+					_1: {ctor: '[]'}
+				},
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html$text('Camere'),
+					_1: {ctor: '[]'}
+				}),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$div,
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$class('description'),
+						_1: {ctor: '[]'}
+					},
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html$text(_user$project$Main$roomsDescRo),
+						_1: {ctor: '[]'}
+					}),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$div,
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html_Attributes$class('picture-container'),
+							_1: {ctor: '[]'}
+						},
+						{
+							ctor: '::',
+							_0: A2(
+								_elm_lang$html$Html$img,
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html_Attributes$class('one'),
+									_1: {
+										ctor: '::',
+										_0: _elm_lang$html$Html_Attributes$src('https://i.imgur.com/bMYJQje.png'),
+										_1: {ctor: '[]'}
+									}
+								},
+								{ctor: '[]'}),
+							_1: {
+								ctor: '::',
+								_0: A2(
+									_elm_lang$html$Html$img,
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html_Attributes$class('two'),
+										_1: {
+											ctor: '::',
+											_0: _elm_lang$html$Html_Attributes$src('https://i.imgur.com/ttSkgoA.jpg'),
+											_1: {ctor: '[]'}
+										}
+									},
+									{ctor: '[]'}),
+								_1: {
+									ctor: '::',
+									_0: A2(
+										_elm_lang$html$Html$img,
+										{
+											ctor: '::',
+											_0: _elm_lang$html$Html_Attributes$class('three'),
+											_1: {
+												ctor: '::',
+												_0: _elm_lang$html$Html_Attributes$src('https://i.imgur.com/69P9RmO.jpg'),
+												_1: {ctor: '[]'}
+											}
+										},
+										{ctor: '[]'}),
+									_1: {ctor: '[]'}
+								}
+							}
+						}),
+					_1: {
+						ctor: '::',
+						_0: A2(_user$project$Main$detailButton, _user$project$Main$RoomsDetails, model),
+						_1: {ctor: '[]'}
+					}
+				}
+			}
+		});
+};
+var _user$project$Main$viewHome = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$class('home'),
+			_1: {ctor: '[]'}
+		},
+		{
+			ctor: '::',
+			_0: _user$project$Main$intro,
+			_1: {
+				ctor: '::',
+				_0: _user$project$Main$introText(model),
+				_1: {
+					ctor: '::',
+					_0: _user$project$Main$roomItem(model),
+					_1: {
+						ctor: '::',
+						_0: _user$project$Main$restaurantItem(model),
+						_1: {ctor: '[]'}
+					}
+				}
+			}
+		});
+};
+var _user$project$Main$container = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$class('frame'),
+			_1: {ctor: '[]'}
+		},
+		{
+			ctor: '::',
+			_0: _user$project$Main$roomItem(model),
+			_1: {
+				ctor: '::',
+				_0: _user$project$Main$restaurantItem(model),
+				_1: {
+					ctor: '::',
+					_0: _user$project$Main$conferenceItem(model),
+					_1: {
+						ctor: '::',
+						_0: _user$project$Main$offerItem(model),
+						_1: {ctor: '[]'}
+					}
+				}
+			}
+		});
+};
 var _user$project$Main$Language = {ctor: 'Language'};
 var _user$project$Main$header = function (model) {
 	return A2(
@@ -10706,31 +10809,72 @@ var _user$project$Main$header = function (model) {
 		{
 			ctor: '::',
 			_0: A2(
-				_elm_lang$html$Html$div,
+				_elm_lang$html$Html$button,
 				{
 					ctor: '::',
-					_0: _elm_lang$html$Html_Attributes$class('hotel-criss'),
+					_0: _elm_lang$html$Html_Attributes$class('home'),
 					_1: {ctor: '[]'}
 				},
 				{
 					ctor: '::',
-					_0: _elm_lang$html$Html$text('Hotel Criss'),
+					_0: _elm_lang$html$Html$text('HC'),
 					_1: {ctor: '[]'}
 				}),
 			_1: {
 				ctor: '::',
 				_0: A2(
-					_elm_lang$html$Html$img,
+					_elm_lang$html$Html$div,
 					{
 						ctor: '::',
-						_0: _elm_lang$html$Html_Attributes$class('hotel-stars'),
+						_0: _elm_lang$html$Html_Attributes$class('left-cont'),
+						_1: {ctor: '[]'}
+					},
+					{
+						ctor: '::',
+						_0: A2(
+							_elm_lang$html$Html$button,
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html_Attributes$class('rooms'),
+								_1: {ctor: '[]'}
+							},
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html$text('Camere'),
+								_1: {ctor: '[]'}
+							}),
 						_1: {
 							ctor: '::',
-							_0: _elm_lang$html$Html_Attributes$src('icons/hotel-star.svg'),
-							_1: {ctor: '[]'}
+							_0: A2(
+								_elm_lang$html$Html$button,
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html_Attributes$class('conference'),
+									_1: {ctor: '[]'}
+								},
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html$text('Sali Conferinta'),
+									_1: {ctor: '[]'}
+								}),
+							_1: {
+								ctor: '::',
+								_0: A2(
+									_elm_lang$html$Html$button,
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html_Attributes$class('restaurant'),
+										_1: {ctor: '[]'}
+									},
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html$text('Restaurant'),
+										_1: {ctor: '[]'}
+									}),
+								_1: {ctor: '[]'}
+							}
 						}
-					},
-					{ctor: '[]'}),
+					}),
 				_1: {
 					ctor: '::',
 					_0: A2(
@@ -10752,43 +10896,69 @@ var _user$project$Main$header = function (model) {
 							_elm_lang$html$Html$div,
 							{
 								ctor: '::',
-								_0: _elm_lang$html$Html_Attributes$class('language'),
+								_0: _elm_lang$html$Html_Attributes$class('right-cont'),
+								_1: {ctor: '[]'}
+							},
+							{
+								ctor: '::',
+								_0: A2(
+									_elm_lang$html$Html$button,
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html_Attributes$class('offers'),
+										_1: {ctor: '[]'}
+									},
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html$text('Offerte'),
+										_1: {ctor: '[]'}
+									}),
 								_1: {
 									ctor: '::',
-									_0: _elm_lang$html$Html_Events$onClick(_user$project$Main$Language),
-									_1: {ctor: '[]'}
+									_0: A2(
+										_elm_lang$html$Html$button,
+										{
+											ctor: '::',
+											_0: _elm_lang$html$Html_Attributes$class('photos'),
+											_1: {ctor: '[]'}
+										},
+										{
+											ctor: '::',
+											_0: _elm_lang$html$Html$text('Galerie Photo'),
+											_1: {ctor: '[]'}
+										}),
+									_1: {
+										ctor: '::',
+										_0: A2(
+											_elm_lang$html$Html$button,
+											{
+												ctor: '::',
+												_0: _elm_lang$html$Html_Attributes$class('contacts'),
+												_1: {ctor: '[]'}
+											},
+											{
+												ctor: '::',
+												_0: _elm_lang$html$Html$text('Contacte'),
+												_1: {ctor: '[]'}
+											}),
+										_1: {ctor: '[]'}
+									}
 								}
-							},
-							_user$project$Main$languageColor(model.language)),
-						_1: {ctor: '[]'}
-					}
-				}
-			}
-		});
-};
-var _user$project$Main$viewHome = function (model) {
-	return A2(
-		_elm_lang$html$Html$div,
-		{
-			ctor: '::',
-			_0: _elm_lang$html$Html_Attributes$class('home'),
-			_1: {ctor: '[]'}
-		},
-		{
-			ctor: '::',
-			_0: _user$project$Main$header(model),
-			_1: {
-				ctor: '::',
-				_0: _user$project$Main$description(model),
-				_1: {
-					ctor: '::',
-					_0: _user$project$Main$container(model),
-					_1: {
-						ctor: '::',
-						_0: _user$project$Main$contact(model),
+							}),
 						_1: {
 							ctor: '::',
-							_0: _user$project$Main$footer,
+							_0: A2(
+								_elm_lang$html$Html$div,
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html_Attributes$class('language'),
+									_1: {
+										ctor: '::',
+										_0: _elm_lang$html$Html_Events$onClick(_user$project$Main$Language),
+										_1: {ctor: '[]'}
+									}
+								},
+								_user$project$Main$languageColor(model.language)),
 							_1: {ctor: '[]'}
 						}
 					}
@@ -10797,34 +10967,89 @@ var _user$project$Main$viewHome = function (model) {
 		});
 };
 var _user$project$Main$view = function (model) {
-	var _p2 = model.route;
-	switch (_p2.ctor) {
-		case 'Home':
-			return _user$project$Main$viewHome(model);
-		case 'Rooms':
-			return A2(
-				_elm_lang$html$Html$div,
-				{ctor: '[]'},
-				{
-					ctor: '::',
-					_0: _elm_lang$html$Html$text('Rooms kfalsdjfkjsd'),
-					_1: {ctor: '[]'}
-				});
-		default:
-			return A2(
-				_elm_lang$html$Html$div,
-				{ctor: '[]'},
-				{
-					ctor: '::',
-					_0: _elm_lang$html$Html$text('Nope :('),
-					_1: {ctor: '[]'}
-				});
-	}
+	return A2(
+		_elm_lang$html$Html$div,
+		{ctor: '[]'},
+		{
+			ctor: '::',
+			_0: _user$project$Main$header(model),
+			_1: {
+				ctor: '::',
+				_0: function () {
+					var _p2 = model.route;
+					switch (_p2.ctor) {
+						case 'Home':
+							return _user$project$Main$viewHome(model);
+						case 'Rooms':
+							return A2(
+								_elm_lang$html$Html$div,
+								{ctor: '[]'},
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html$text('Rooms kfalsdjfkjsd'),
+									_1: {ctor: '[]'}
+								});
+						case 'Restaurant':
+							return A2(
+								_elm_lang$html$Html$div,
+								{ctor: '[]'},
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html$text('Restaurant'),
+									_1: {ctor: '[]'}
+								});
+						case 'Conference':
+							return A2(
+								_elm_lang$html$Html$div,
+								{ctor: '[]'},
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html$text('Conference'),
+									_1: {ctor: '[]'}
+								});
+						case 'Offers':
+							return A2(
+								_elm_lang$html$Html$div,
+								{ctor: '[]'},
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html$text('Offers'),
+									_1: {ctor: '[]'}
+								});
+						case 'Contact':
+							return A2(
+								_elm_lang$html$Html$div,
+								{ctor: '[]'},
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html$text('Contacts'),
+									_1: {ctor: '[]'}
+								});
+						default:
+							return A2(
+								_elm_lang$html$Html$div,
+								{ctor: '[]'},
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html$text('Nope :('),
+									_1: {ctor: '[]'}
+								});
+					}
+				}(),
+				_1: {ctor: '[]'}
+			}
+		});
 };
 var _user$project$Main$Path = function (a) {
 	return {ctor: 'Path', _0: a};
 };
+var _user$project$Main$False = {ctor: 'False'};
+var _user$project$Main$True = {ctor: 'True'};
 var _user$project$Main$NotFound = {ctor: 'NotFound'};
+var _user$project$Main$Contact = {ctor: 'Contact'};
+var _user$project$Main$Offers = {ctor: 'Offers'};
+var _user$project$Main$Conference = {ctor: 'Conference'};
+var _user$project$Main$Restaurant = {ctor: 'Restaurant'};
 var _user$project$Main$Rooms = {ctor: 'Rooms'};
 var _user$project$Main$Home = {ctor: 'Home'};
 var _user$project$Main$matcher = _evancz$url_parser$UrlParser$oneOf(
@@ -10837,7 +11062,14 @@ var _user$project$Main$matcher = _evancz$url_parser$UrlParser$oneOf(
 				_evancz$url_parser$UrlParser$map,
 				_user$project$Main$Rooms,
 				_evancz$url_parser$UrlParser$s('rooms')),
-			_1: {ctor: '[]'}
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_evancz$url_parser$UrlParser$map,
+					_user$project$Main$Contact,
+					_evancz$url_parser$UrlParser$s('contact')),
+				_1: {ctor: '[]'}
+			}
 		}
 	});
 var _user$project$Main$matchRoute = function (location) {
@@ -10853,32 +11085,78 @@ var _user$project$Main$Ro = {ctor: 'Ro'};
 var _user$project$Main$update = F2(
 	function (msg, model) {
 		var _p4 = msg;
-		if (_p4.ctor === 'Path') {
-			var newRoute = _user$project$Main$matchRoute(
-				A2(_elm_lang$core$Debug$log, 'loc', _p4._0));
-			return {
-				ctor: '_Tuple2',
-				_0: _elm_lang$core$Native_Utils.update(
-					model,
-					{route: newRoute}),
-				_1: _elm_lang$core$Platform_Cmd$none
-			};
-		} else {
-			var newLang = function () {
-				var _p5 = model.language;
-				if (_p5.ctor === 'Ro') {
-					return _user$project$Main$En;
-				} else {
-					return _user$project$Main$Ro;
-				}
-			}();
-			return {
-				ctor: '_Tuple2',
-				_0: _elm_lang$core$Native_Utils.update(
-					model,
-					{language: newLang}),
-				_1: _elm_lang$core$Platform_Cmd$none
-			};
+		switch (_p4.ctor) {
+			case 'Path':
+				var newRoute = _user$project$Main$matchRoute(
+					A2(_elm_lang$core$Debug$log, 'loc', _p4._0));
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{route: newRoute}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'Language':
+				var newLang = function () {
+					var _p5 = model.language;
+					if (_p5.ctor === 'Ro') {
+						return _user$project$Main$En;
+					} else {
+						return _user$project$Main$Ro;
+					}
+				}();
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{language: newLang}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'RoomsDetails':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{route: _user$project$Main$Rooms}),
+					_1: _elm_lang$navigation$Navigation$newUrl(
+						A3(_user$project$Main$properLanguageText, model.language, '#/camere', '#/rooms'))
+				};
+			case 'RestaurantDetails':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{route: _user$project$Main$Restaurant}),
+					_1: _elm_lang$navigation$Navigation$newUrl(
+						A3(_user$project$Main$properLanguageText, model.language, '#/restaurant', '#/restaurant'))
+				};
+			case 'ConferenceDetails':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{route: _user$project$Main$Conference}),
+					_1: _elm_lang$navigation$Navigation$newUrl(
+						A3(_user$project$Main$properLanguageText, model.language, '#/sali-conferinta', '#/conference-rooms'))
+				};
+			case 'OffersDetails':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{route: _user$project$Main$Offers}),
+					_1: _elm_lang$navigation$Navigation$newUrl(
+						A3(_user$project$Main$properLanguageText, model.language, '#/oferte', '#/offers'))
+				};
+			default:
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{route: _user$project$Main$Contact}),
+					_1: _elm_lang$navigation$Navigation$newUrl(
+						A3(_user$project$Main$properLanguageText, model.language, '#/contacte', '#/contacts'))
+				};
 		}
 	});
 var _user$project$Main$init = function (location) {
