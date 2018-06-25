@@ -291,11 +291,11 @@ var _user$project$Main$confDescRo = 'Ceva despre fatul ca hotelul ofera spatii p
 var _user$project$Main$confEn = 'Conference center';
 var _user$project$Main$confRo = 'Centru de conferinte';
 var _user$project$Main$restDescEn = 'We should say a few words about the food and the context in which this is server, donno.';
-var _user$project$Main$restDescRo = 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.';
+var _user$project$Main$restDescRo = 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.';
 var _user$project$Main$restEn = 'Restaurant';
 var _user$project$Main$restRo = 'Restaurant';
 var _user$project$Main$roomsDescEn = 'We talk about how awesome the rooms are, how many are in total and perhaps a few words regarding the accessible prices we offer.';
-var _user$project$Main$roomsDescRo = 'Laudam camere nitel, spunem cate sunt in total, si cateva vorbe despre cum e fiecare si ca preturile sunt accesible.';
+var _user$project$Main$roomsDescRo = 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.';
 var _user$project$Main$roomsEn = 'Rooms';
 var _user$project$Main$roomsRo = 'Camere';
 var _user$project$Main$googleMaps = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2848.939794849981!2d25.987970515523305!3d44.43439717910221!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b200e31c40b727%3A0x18dec04ac0ffa6f2!2sBulevardul+Iuliu+Maniu+484%2C+Bucure%C8%99ti%2C+Romania!5e0!3m2!1sen!2sse!4v1529339983765';
@@ -467,12 +467,13 @@ var _user$project$Main$contact = function (model) {
 		});
 };
 var _user$project$Main$OffersDetails = {ctor: 'OffersDetails'};
-var _user$project$Main$offerItem = function (model) {
+var _user$project$Main$ConferenceDetails = {ctor: 'ConferenceDetails'};
+var _user$project$Main$conferenceItem = function (model) {
 	return A2(
 		_elm_lang$html$Html$div,
 		{
 			ctor: '::',
-			_0: _elm_lang$html$Html_Attributes$class('container'),
+			_0: _elm_lang$html$Html_Attributes$class('conference-item'),
 			_1: {ctor: '[]'}
 		},
 		{
@@ -481,41 +482,60 @@ var _user$project$Main$offerItem = function (model) {
 				_elm_lang$html$Html$div,
 				{
 					ctor: '::',
-					_0: _elm_lang$html$Html_Attributes$class('right'),
+					_0: _elm_lang$html$Html_Attributes$class('top'),
 					_1: {ctor: '[]'}
 				},
 				{
 					ctor: '::',
 					_0: A2(
-						_elm_lang$html$Html$img,
+						_elm_lang$html$Html$div,
 						{
 							ctor: '::',
-							_0: _elm_lang$html$Html_Attributes$class('offer-right'),
+							_0: _elm_lang$html$Html_Attributes$class('text-container'),
+							_1: {ctor: '[]'}
+						},
+						{
+							ctor: '::',
+							_0: A2(
+								_elm_lang$html$Html$div,
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html_Attributes$class('title'),
+									_1: {ctor: '[]'}
+								},
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html$text('Sali de Conferinta'),
+									_1: {ctor: '[]'}
+								}),
 							_1: {
 								ctor: '::',
-								_0: _elm_lang$html$Html_Attributes$src('https://i.imgur.com/lSW3WK2.jpg'),
-								_1: {ctor: '[]'}
+								_0: A2(
+									_elm_lang$html$Html$div,
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html_Attributes$class('description'),
+										_1: {ctor: '[]'}
+									},
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html$text(_user$project$Main$confDescRo),
+										_1: {ctor: '[]'}
+									}),
+								_1: {
+									ctor: '::',
+									_0: A2(_user$project$Main$detailButton, _user$project$Main$ConferenceDetails, model),
+									_1: {ctor: '[]'}
+								}
 							}
-						},
-						{ctor: '[]'}),
-					_1: {ctor: '[]'}
-				}),
-			_1: {
-				ctor: '::',
-				_0: A2(
-					_elm_lang$html$Html$div,
-					{
-						ctor: '::',
-						_0: _elm_lang$html$Html_Attributes$class('left'),
-						_1: {ctor: '[]'}
-					},
-					{
+						}),
+					_1: {
 						ctor: '::',
 						_0: A2(
 							_elm_lang$html$Html$div,
 							{
 								ctor: '::',
-								_0: _elm_lang$html$Html_Attributes$class('picture'),
+								_0: _elm_lang$html$Html_Attributes$class('picture-container'),
 								_1: {ctor: '[]'}
 							},
 							{
@@ -524,108 +544,12 @@ var _user$project$Main$offerItem = function (model) {
 									_elm_lang$html$Html$img,
 									{
 										ctor: '::',
-										_0: _elm_lang$html$Html_Attributes$class('offer-left'),
-										_1: {
-											ctor: '::',
-											_0: _elm_lang$html$Html_Attributes$src('https://i.imgur.com/V24BLy2.jpg'),
-											_1: {ctor: '[]'}
-										}
+										_0: _elm_lang$html$Html_Attributes$src('https://i.imgur.com/8TBYOGM.jpg'),
+										_1: {ctor: '[]'}
 									},
 									{ctor: '[]'}),
 								_1: {ctor: '[]'}
 							}),
-						_1: {
-							ctor: '::',
-							_0: A4(
-								_user$project$Main$descriptionItem,
-								_user$project$Main$OffersDetails,
-								model,
-								A3(_user$project$Main$properLanguageText, model.language, _user$project$Main$offerRo, _user$project$Main$offerEn),
-								A3(_user$project$Main$properLanguageText, model.language, _user$project$Main$offerDescRo, _user$project$Main$offerDescEn)),
-							_1: {ctor: '[]'}
-						}
-					}),
-				_1: {
-					ctor: '::',
-					_0: A2(
-						_elm_lang$html$Html$div,
-						{
-							ctor: '::',
-							_0: _elm_lang$html$Html_Attributes$class('bottom'),
-							_1: {ctor: '[]'}
-						},
-						{
-							ctor: '::',
-							_0: A2(
-								_elm_lang$html$Html$img,
-								{
-									ctor: '::',
-									_0: _elm_lang$html$Html_Attributes$class('offer-bot'),
-									_1: {
-										ctor: '::',
-										_0: _elm_lang$html$Html_Attributes$src('https://i.imgur.com/dINiFcv.jpg'),
-										_1: {ctor: '[]'}
-									}
-								},
-								{ctor: '[]'}),
-							_1: {ctor: '[]'}
-						}),
-					_1: {ctor: '[]'}
-				}
-			}
-		});
-};
-var _user$project$Main$ConferenceDetails = {ctor: 'ConferenceDetails'};
-var _user$project$Main$conferenceItem = function (model) {
-	return A2(
-		_elm_lang$html$Html$div,
-		{
-			ctor: '::',
-			_0: _elm_lang$html$Html_Attributes$class('container'),
-			_1: {ctor: '[]'}
-		},
-		{
-			ctor: '::',
-			_0: A2(
-				_elm_lang$html$Html$div,
-				{
-					ctor: '::',
-					_0: _elm_lang$html$Html_Attributes$class('left'),
-					_1: {ctor: '[]'}
-				},
-				{
-					ctor: '::',
-					_0: A2(
-						_elm_lang$html$Html$div,
-						{
-							ctor: '::',
-							_0: _elm_lang$html$Html_Attributes$class('picture'),
-							_1: {ctor: '[]'}
-						},
-						{
-							ctor: '::',
-							_0: A2(
-								_elm_lang$html$Html$img,
-								{
-									ctor: '::',
-									_0: _elm_lang$html$Html_Attributes$class('conf-left'),
-									_1: {
-										ctor: '::',
-										_0: _elm_lang$html$Html_Attributes$src('https://i.imgur.com/XS6uWXP.jpg'),
-										_1: {ctor: '[]'}
-									}
-								},
-								{ctor: '[]'}),
-							_1: {ctor: '[]'}
-						}),
-					_1: {
-						ctor: '::',
-						_0: A4(
-							_user$project$Main$descriptionItem,
-							_user$project$Main$ConferenceDetails,
-							model,
-							A3(_user$project$Main$properLanguageText, model.language, _user$project$Main$confRo, _user$project$Main$confEn),
-							A3(_user$project$Main$properLanguageText, model.language, _user$project$Main$confDescRo, _user$project$Main$confDescEn)),
 						_1: {ctor: '[]'}
 					}
 				}),
@@ -635,52 +559,55 @@ var _user$project$Main$conferenceItem = function (model) {
 					_elm_lang$html$Html$div,
 					{
 						ctor: '::',
-						_0: _elm_lang$html$Html_Attributes$class('right'),
+						_0: _elm_lang$html$Html_Attributes$class('bottom'),
 						_1: {ctor: '[]'}
 					},
 					{
 						ctor: '::',
 						_0: A2(
-							_elm_lang$html$Html$img,
+							_elm_lang$html$Html$div,
 							{
 								ctor: '::',
-								_0: _elm_lang$html$Html_Attributes$class('conf-right'),
-								_1: {
-									ctor: '::',
-									_0: _elm_lang$html$Html_Attributes$src('https://i.imgur.com/D9hXKgc.jpg'),
-									_1: {ctor: '[]'}
-								}
+								_0: _elm_lang$html$Html_Attributes$class('left-picture-container'),
+								_1: {ctor: '[]'}
 							},
-							{ctor: '[]'}),
-						_1: {ctor: '[]'}
-					}),
-				_1: {
-					ctor: '::',
-					_0: A2(
-						_elm_lang$html$Html$div,
-						{
-							ctor: '::',
-							_0: _elm_lang$html$Html_Attributes$class('bottom'),
-							_1: {ctor: '[]'}
-						},
-						{
+							{
+								ctor: '::',
+								_0: A2(
+									_elm_lang$html$Html$img,
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html_Attributes$src('https://i.imgur.com/D9hXKgc.jpg'),
+										_1: {ctor: '[]'}
+									},
+									{ctor: '[]'}),
+								_1: {ctor: '[]'}
+							}),
+						_1: {
 							ctor: '::',
 							_0: A2(
-								_elm_lang$html$Html$img,
+								_elm_lang$html$Html$div,
 								{
 									ctor: '::',
-									_0: _elm_lang$html$Html_Attributes$class('conf-bot'),
-									_1: {
-										ctor: '::',
-										_0: _elm_lang$html$Html_Attributes$src('https://i.imgur.com/8TBYOGM.jpg'),
-										_1: {ctor: '[]'}
-									}
+									_0: _elm_lang$html$Html_Attributes$class('right-picture-container'),
+									_1: {ctor: '[]'}
 								},
-								{ctor: '[]'}),
+								{
+									ctor: '::',
+									_0: A2(
+										_elm_lang$html$Html$img,
+										{
+											ctor: '::',
+											_0: _elm_lang$html$Html_Attributes$src('https://i.imgur.com/eOw3LHX.jpg'),
+											_1: {ctor: '[]'}
+										},
+										{ctor: '[]'}),
+									_1: {ctor: '[]'}
+								}),
 							_1: {ctor: '[]'}
-						}),
-					_1: {ctor: '[]'}
-				}
+						}
+					}),
+				_1: {ctor: '[]'}
 			}
 		});
 };
@@ -887,33 +814,19 @@ var _user$project$Main$viewHome = function (model) {
 					_1: {
 						ctor: '::',
 						_0: _user$project$Main$restaurantItem(model),
-						_1: {ctor: '[]'}
-					}
-				}
-			}
-		});
-};
-var _user$project$Main$container = function (model) {
-	return A2(
-		_elm_lang$html$Html$div,
-		{
-			ctor: '::',
-			_0: _elm_lang$html$Html_Attributes$class('frame'),
-			_1: {ctor: '[]'}
-		},
-		{
-			ctor: '::',
-			_0: _user$project$Main$roomItem(model),
-			_1: {
-				ctor: '::',
-				_0: _user$project$Main$restaurantItem(model),
-				_1: {
-					ctor: '::',
-					_0: _user$project$Main$conferenceItem(model),
-					_1: {
-						ctor: '::',
-						_0: _user$project$Main$offerItem(model),
-						_1: {ctor: '[]'}
+						_1: {
+							ctor: '::',
+							_0: _user$project$Main$conferenceItem(model),
+							_1: {
+								ctor: '::',
+								_0: _user$project$Main$contact(model),
+								_1: {
+									ctor: '::',
+									_0: _user$project$Main$footer,
+									_1: {ctor: '[]'}
+								}
+							}
+						}
 					}
 				}
 			}

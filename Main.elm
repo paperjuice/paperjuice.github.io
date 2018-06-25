@@ -17,12 +17,12 @@ googleMaps = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2848.9397948
 -- TRANSLATION --
 roomsRo = "Camere"
 roomsEn = "Rooms"
-roomsDescRo = "Laudam camere nitel, spunem cate sunt in total, si cateva vorbe despre cum e fiecare si ca preturile sunt accesible."
+roomsDescRo = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa."
 roomsDescEn = "We talk about how awesome the rooms are, how many are in total and perhaps a few words regarding the accessible prices we offer."
 
 restRo = "Restaurant"
 restEn = "Restaurant"
-restDescRo = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu."
+restDescRo = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu."
 restDescEn = "We should say a few words about the food and the context in which this is server, donno."
 
 confRo = "Centru de conferinte"
@@ -169,6 +169,9 @@ viewHome model =
       , introText model
       , roomItem model
       , restaurantItem model
+      , conferenceItem model
+      , contact model
+      , footer
       ]
 
       --, description model
@@ -248,58 +251,28 @@ restaurantItem model =
             ]
       ]
 
+
+
 conferenceItem : Model -> Html Msg
 conferenceItem model =
-  div [ class "container" ]
-      [ div [ class "left" ]
-            [ div [ class "picture" ]
-                  [ img [ class "conf-left"
-                        , src "https://i.imgur.com/XS6uWXP.jpg"
-                        ] [ ]
+  div [ class "conference-item" ]
+      [ div [ class "top" ]
+            [ div [ class "text-container" ]
+                  [ div [ class "title" ]       [ text "Sali de Conferinta" ]
+                  , div [ class "description" ] [ text confDescRo ]
+                  , detailButton ConferenceDetails model
                   ]
-            , descriptionItem
-              ConferenceDetails
-              model
-              ( properLanguageText model.language confRo confEn )
-              ( properLanguageText model.language confDescRo confDescEn )
-            ]
-      , div [ class "right" ]
-            [ img [ class "conf-right"
-                  , src "https://i.imgur.com/D9hXKgc.jpg"
-                  ] [ ]
+            , div [ class "picture-container" ]
+                  [ img [ src "https://i.imgur.com/8TBYOGM.jpg" ] [ ]
+                  ]
             ]
       , div [ class "bottom" ]
-            [ img [ class "conf-bot"
-                  , src "https://i.imgur.com/8TBYOGM.jpg"
-                  ] [ ]
-            ]
-      ]
-
-offerItem : Model -> Html Msg
-offerItem model =
-  div [ class "container" ]
-      [ div [ class "right" ]
-            [ img [ class "offer-right"
-                  , src "https://i.imgur.com/lSW3WK2.jpg"
-                  ] [ ]
-            ]
-      , div [ class "left" ]
-            [ div [ class "picture" ]
-                  [ img [ class "offer-left"
-                        , src "https://i.imgur.com/V24BLy2.jpg"
-                        ] [ ]
+            [ div [ class "left-picture-container" ]
+                  [ img [ src "https://i.imgur.com/D9hXKgc.jpg" ] [ ]
                   ]
-            , descriptionItem
-              OffersDetails
-              model
-              ( properLanguageText model.language offerRo offerEn )
-              ( properLanguageText model.language offerDescRo offerDescEn )
-
-            ]
-      , div [ class "bottom" ]
-            [ img [ class "offer-bot"
-                  , src "https://i.imgur.com/dINiFcv.jpg"
-                  ] [ ]
+            , div [ class "right-picture-container" ]
+                  [ img [ src "https://i.imgur.com/eOw3LHX.jpg" ] [ ]
+                  ]
             ]
       ]
 
@@ -350,15 +323,6 @@ languageButtons colorRo colorEn =
       [ button [ style [ ("color", colorRo) ] ] [ text "Ro" ]
       , span [ ] [ text "/" ]
       , button [ style [ ("color", colorEn) ] ] [ text "En" ]
-      ]
-
-container : Model -> Html Msg
-container model =
-  div [ class "frame" ]
-      [ roomItem model
-      , restaurantItem model
-      , conferenceItem model
-      , offerItem model
       ]
 
 descriptionItem : Msg -> Model -> String -> String -> Html Msg
