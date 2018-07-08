@@ -1,0 +1,279 @@
+:root
+{
+    --height: 7000px;
+    --font: 'Times New Roman', serif;
+}
+
+body, html
+{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.wrapper
+{
+    width: 100%;
+    height: var(--height);
+    background-color: #1c1c1f;
+}
+
+.header
+{
+    z-index: 2;
+    position: fixed;
+    background-color: #1e1e1e;
+    height: 70px;
+    top:0;
+    left:0;
+    right:0;
+    opacity: 1;
+    border-bottom: 4px solid #bc2c2c;
+    box-shadow: 0px 2px 8px black;
+}
+.header img.icon:hover{
+	opacity: 0.8;
+}
+.header img.icon:active{
+	opacity: 1;
+}
+
+.header img:first-child
+{
+	position: absolute;
+	float: left;
+}
+.header img:nth-child(2)
+{
+	position: absolute;
+	float: right;
+	right:0;
+}
+.header h
+{
+	z-index: 3;
+    color: white;
+    font-size: 30px;
+    font-family: var(--font-family);
+    position: fixed;
+    top:15px;
+    left:15px;
+    text-shadow: 0px 3px 5px #101010;
+}
+.header div
+{
+	font-size: 20px;
+    font-family: var(--font-family);
+	position: fixed;
+	color: white;
+	top:23px;
+    left:230px;
+    text-shadow: 0px 3px 5px #101010;
+}
+.nav_bar_text
+{
+	z-index: 10;
+	position: fixed;
+	/*background-color: white;*/
+	height:50px;
+	width:600px;
+	right: 0;
+	top:10px;
+	text-shadow: 0px 3px 3px #101010;
+}
+.nav_bar_text a
+{
+	text-decoration: none;
+	color: white;
+	float:right;
+	margin-top: 18px;
+	margin-right: 20px;
+	font-size: 15px;
+	font-family: var(--font-family);
+	transition: all 0.4s;
+}
+.nav_bar_text a:first-child
+{
+	margin-right: 15px;
+}
+.nav_bar_text a:hover
+{
+	text-decoration: overline;
+	color: #E3463D;
+}
+
+.container
+{
+    position: relative;
+    width:850px;
+    height: var(--height);
+    /*background-color: black;*/
+    left: 50%;
+    transform: translate(-50%);
+    display: block;
+}
+
+.project_title h1
+{
+    position: relative;
+    padding-top: 10%;
+    /*padding-left: 10%;*/
+    font-size: 55px;
+    color: white;
+}
+.project_title p
+{
+    position: relative;
+    /*padding-left: 10%;*/
+    padding-bottom: 5%;
+    font-size: 18px;
+    color: white;
+    font-style: serif;
+}
+
+.container #game_container img
+{
+    position: relative;
+    width: auto;
+    padding-top: 5%;
+    max-width: 50%;
+    left:50%;
+    transform: translate(-50%);
+}
+
+.container #game_container #bg_image
+{
+    z-index: -1;
+    position: absolute;
+    width: auto;
+    opacity: 0.1;
+    left:200px;
+    transform: scale(2);
+}
+
+.container #game_container .bg_image_foa
+{
+    top: 630px;
+}
+.container #game_container .bg_image_wander
+{
+    top: 1770px;
+}
+.container #game_container  .bg_image_ad
+{
+    top: 2840px;
+}
+.container #game_container  .bg_image_pix
+{
+    top: 3850px;
+}
+.container #game_container .bg_image_sb
+{
+    top: 4950px;
+}
+.container #game_container .bg_image_se
+{
+    top: 6000px;
+}
+
+
+.container #game_container h1
+{
+    position: relative;
+    padding-top: 10%;
+    /*padding-left: 10%;*/
+    font-size: 30px;
+    color: #e8d39a;
+}
+.container #game_container p
+{
+    position: relative;
+    padding-top: 2%;
+    /*padding-right: 10%;*/
+    font-size: 18px;
+    color: white;
+    line-height: 140%;
+}
+.container #game_container a
+{
+    text-decoration:none;
+    color: white;
+    transition: all 0.2s;
+    font-style: oblique;
+}
+.container #game_container a:hover
+{
+    color: #bc2c2c;
+    text-decoration: underline;
+    font-style: normal;
+}
+.container #game_container span
+{
+    color: #e8d39a;
+}
+.container #game_container iframe
+{
+    /*padding-left: 10%;*/
+    width:100%;
+    height: 500px;
+    margin-bottom: 50px;
+    border: 3px groove  #1e1e1e;
+    box-shadow: 0px 3px 10px black;
+}
+
+
+
+
+
+
+
+
+
+
+.footer_wrapper
+{
+	position: relative;
+}
+
+.footer
+{
+	position: absolute;
+	background-color: #1e1e1e;
+	width: 100%;
+	height: 250px;
+	top:100%;
+	text-align: center;
+	border-top: 4px solid #bc2c2c;
+    box-shadow: 0px -2px 8px black;
+}
+
+.footer .media
+{
+	display: inline;
+}
+.footer .media a
+{
+	text-decoration: none;
+}
+.footer .media img
+{
+	padding-top: 70px;
+	height: 60px;
+	width: 60px;
+	margin: 15px;
+	transition: all 0.2s;
+}
+.footer .media img:hover
+{
+	transform: scale(1.1);
+}
+
+.footer .l_corner
+{
+	position: absolute;
+}
+.footer .r_corner
+{
+	position: absolute;
+	right:0;
+}
